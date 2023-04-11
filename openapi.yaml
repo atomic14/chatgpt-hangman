@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: Hangman Game API
+  version: 1.0.0
+paths:
+  /start_game:
+    post:
+      operationId: start_game
+      summary: Start a new game
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                word:
+                  type: string
+                  description: The word to be used in the game
+              required:
+                - word
+      responses:
+        "200":
+          description: Game started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  display:
+                    type: string
+        "400":
+          description: Bad request (e.g., missing word)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /guess_letter:
+    post:
+      operationId: guess_letter
+      summary: Guess a letter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                letter:
+                  type: string
+                  description: The letter being guessed
+              required:
+                - letter
+      responses:
+        "200":
+          description: Letter guessed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  correct_guess:
+                    type: boolean
+                  display:
+                    type: string
+        "400":
+          description: Bad request (e.g., missing letter)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /guess_whole_word:
+    post:
+      operationId: guess_whole_word
+      summary: Guess the whole word
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                guessed_word:
+                  type: string
+                  description: The whole word being guessed
+              required:
+                - guessed_word
+      responses:
+        "200":
+          description: Word guessed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  correct_guess:
+                    type: boolean
+                  completed:
+                    type: boolean
+        "400":
+          description: Bad request (e.g., missing guessed word)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  /get_word:
+    get:
+      operationId: get_word
+      summary: Get the current word
+      responses:
+        "200":
+          description: Current word retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  word:
+                    type: string
+  /get_display:
+    get:
+      operationId: get_display
+      summary: Get the current display
+      responses:
+        "200":
+          description: Current display retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  display:
+                    type: string
