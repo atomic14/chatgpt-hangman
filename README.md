@@ -2,7 +2,7 @@
 
 I've been messing around in another project adding memory to ChatGPT, but it's really hard to get it to keep track of complex state.
 
-You can see this if you try to play Hangman against it. It often starts off well, but eventually, it will put your guessed letters in the wrong place, or just add random letters instead of underscores.
+You can see this if you try to play Hangman against it. It often starts off well, but eventually, it will put your guessed letters in the wrong place, or just add random letters instead of underscores - you can see my experiments here: https://github.com/atomic14/chatgpt-memory
 
 So I thought, why not make a plugin to do this instead!
 
